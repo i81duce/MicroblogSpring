@@ -38,7 +38,7 @@ public class MicroblogSpringController {
     }
 
     @RequestMapping(path = "/deleteMessage", method = RequestMethod.POST) //
-    public String deleteMessage(Integer id) {
+    public String deleteMessage(int id) {
         messages.remove(id - 1);
         return "redirect:/";
     }

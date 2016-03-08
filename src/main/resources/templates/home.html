@@ -21,9 +21,11 @@
 </form>
 Messages by {{.}}:
 <ol>
+    {{#messages}}
     <li>
-{{#messages}} <form action="/deleteMessage" method="post"><button type="submit">Delete</button></form>
+        <form action="/deleteMessage" method="post"><button type="submit">Delete</button></form>
     </li>
+    {{/messages}}
 </ol>
 {{/name}}
 
