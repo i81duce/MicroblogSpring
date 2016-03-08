@@ -28,17 +28,13 @@ public class MicroblogSpringController {
 
     @RequestMapping(path = "/addMessage", method = RequestMethod.POST) //
     public String addMessage(String text) {
-//        Message message = new Message(messages.size(), text);
-//        int index = messages.size() - 1;
-//        messages.add(index, "addMessage");
-//        return "redirect:/";
-        Message m = new Message(messages.size() + 1 , text);
-        messages.add(m);
+        Message message = new Message(messages.size() + 1 , text);
+        messages.add(message);
         return "redirect:/";
     }
 
     @RequestMapping(path = "/deleteMessage", method = RequestMethod.POST) //
-    public String deleteMessage(int id) {
+    public String deleteMessage(Integer id) {
         messages.remove(id - 1);
         return "redirect:/";
     }
