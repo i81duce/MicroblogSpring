@@ -28,6 +28,7 @@ public class MicroblogSpringController {
 
     @RequestMapping(path = "/addMessage", method = RequestMethod.POST) //
     public String addMessage(String text) {
+        // int index = messages.size() + 1;
         Message message = new Message(messages.size() + 1 , text);
         messages.add(message);
         return "redirect:/";
