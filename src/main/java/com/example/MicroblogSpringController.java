@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Controller
 public class MicroblogSpringController {
 
-    ArrayList<Message> messages = new ArrayList<Message>();
+    ArrayList<Message> messages = new ArrayList<>();
 
     @RequestMapping(path = "/", method = RequestMethod.GET) // same as a get/post route in spark
     public String user(Model model, HttpSession session) {
