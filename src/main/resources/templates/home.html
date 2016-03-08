@@ -16,15 +16,14 @@
 </form>
 
 <form action="/addMessage" method="post">
-    <input type="text" placeholder="Enter your message" name="addMessage"/>
+    <input type="text" placeholder="Enter your message" name="text"/>
     <button type="submit">Submit</button>
 </form>
 Messages by {{.}}:
 <ol>
     {{#messages}}
-    <li>
-        <form action="/deleteMessage" method="post"><button type="submit">Delete</button></form>
-    </li>
+    <li>{{text}}</li>
+    <form action="/deleteMessage" method="post"><input name="id" value="{{id}}" type="hidden"/><button type="submit">Delete</button></form>
     {{/messages}}
 </ol>
 {{/name}}
