@@ -1,5 +1,6 @@
 package com.example;//Created by KevinBozic on 3/7/16.
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +12,15 @@ import java.util.ArrayList;
 @Controller
 public class MicroblogSpringController {
 
-    ArrayList<Message> messages = new ArrayList<>();
+    @Autowired
+    MessageRepository messages;
+
+//    ArrayList<Message> messages = new ArrayList<>();
 
     @RequestMapping(path = "/", method = RequestMethod.GET) // same as a get/post route in spark
     public String user(Model model, HttpSession session) {
         model.addAttribute("name", session.getAttribute("userName"));
-        model.addAttribute("messages", messages);
+        model.addAttribute("messages", messages.findAll());
         return "home";
     }
 
@@ -28,15 +32,14 @@ public class MicroblogSpringController {
 
     @RequestMapping(path = "/addMessage", method = RequestMethod.POST) //
     public String addMessage(String text) {
-        // int index = messages.size() + 1;
-        Message message = new Message(messages.size() + 1 , text);
-        messages.add(message);
+        Message message = new Message(text);
+        messages.save(message);
         return "redirect:/";
     }
 
     @RequestMapping(path = "/deleteMessage", method = RequestMethod.POST) //
     public String deleteMessage(int id) {
-        messages.remove(id - 1);
+        messages.delete(id);
         return "redirect:/";
     }
 
@@ -45,4 +48,6 @@ public class MicroblogSpringController {
         session.invalidate(); // This invalidates the current session. Used for logging out
         return "redirect:/"; // Redirects back to the home
     }
+
+    // add edit route
 }

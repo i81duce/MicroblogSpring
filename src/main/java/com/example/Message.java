@@ -1,12 +1,22 @@
 package com.example;//Created by KevinBozic on 3/7/16.
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Message {
+    @Id
+    @GeneratedValue
     int id;
+
     String text;
 
-    public Message(int id, String text) {
-        this.id = id;
+    public Message(String text) {
         this.text = text;
+    }
+
+    public Message() {
     }
 
     public String getText() {
